@@ -14,9 +14,13 @@ Person::Person(const char *name_, Person* father_, Person* mother_){
     numChildren = 0;
     children = new Person*[capacity];
 }
-
+//doesnt delete the parents
+//doesnt delete the name either
 Person::~Person(){
-    delete children;
+    delete []  children;
+    delete  name;
+    delete father;
+    delete mother;
 }
 
 void Person::addChild(Person *newChild){
@@ -58,6 +62,8 @@ void Person::printLineage(char dir, int level){
 * if level = 0 then returns the empty string
 * if level >= 1 then returns ("great ")^(level - 1) + "grand "
 */
+
+//new is used may be causing a leak
 char* Person::compute_relation(int level){
     if(level == 0) return strcpy(new char[1], "");
 

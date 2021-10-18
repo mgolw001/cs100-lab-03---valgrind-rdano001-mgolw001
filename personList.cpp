@@ -8,10 +8,10 @@ using std::endl;
 PersonList::PersonList(){
     capacity = 2;
     numPeople = 0;
-    theList = new Person*[capacity];
+    theList = new Person*[capacity];//apears to be causing issues with leaks
 }
-
-PersonList::~PersonList(){
+//Could be an issue here with the type of delete
+PersonList::~PersonList(){ //does deleting theList delete every element?
     delete [] theList;
 }
 
