@@ -8,8 +8,8 @@ using std::endl;
 Person::Person(const char *name_, Person* father_, Person* mother_){
     name = new char[strlen(name_)];
     strcpy(name, name_);
-    father = father_;
-    mother = mother_;
+    father =  father_;//this line is causeing issues
+    mother =  mother_;//this line is causing issues
     capacity = 1;
     numChildren = 0;
     children = new Person*[capacity];
@@ -17,10 +17,11 @@ Person::Person(const char *name_, Person* father_, Person* mother_){
 //doesnt delete the parents
 //doesnt delete the name either
 Person::~Person(){
-    delete []  children;
+    for(int i=0;i<capacity;i++){
+	delete children[i];
+    }
+    delete [] children;
     delete  name;
-    delete father;
-    delete mother;
 }
 
 void Person::addChild(Person *newChild){
