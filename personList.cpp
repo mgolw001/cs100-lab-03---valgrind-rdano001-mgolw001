@@ -12,9 +12,6 @@ PersonList::PersonList(){
 }
 //Could be an issue here with the type of delete
 PersonList::~PersonList(){ //does deleting theList delete every element
-    for(int i=0;i<capacity;i++){
-	delete theList[i];
-    }
     delete [] theList;
 }
 
