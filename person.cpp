@@ -8,17 +8,18 @@ using std::endl;
 Person::Person(const char *name_, Person* father_, Person* mother_){
     name = new char[strlen(name_)];
     strcpy(name, name_);
-    father =  father_;//this line is causeing issues
-    mother =  mother_;//this line is causing issues
+    father =  father_;
+    mother =  mother_;
     capacity = 1;
     numChildren = 0;
     children = new Person*[capacity];
 }
-//doesnt delete the parents
-//doesnt delete the name either
+
 Person::~Person(){
     delete [] children;
     delete [] name;
+    delete father;//unsure if this needs to be deleted
+    delete mother;//unsure if this needs to be deleted
 }
 
 void Person::addChild(Person *newChild){
@@ -83,5 +84,5 @@ void expand(Person ***t, int *MAX){
   memcpy(temp, *t, *MAX * sizeof(**t));
   *MAX *= 2;
   *t = temp;
-  delete temp;
-}
+  delete temp;//unsure if this is the correct delete 
+  }

@@ -8,11 +8,11 @@ using std::endl;
 PersonList::PersonList(){
     capacity = 2;
     numPeople = 0;
-    theList = new Person*[capacity];//apears to be causing issues with leaks
+    theList = new Person*[capacity];
 }
-//Could be an issue here with the type of delete
-PersonList::~PersonList(){ //does deleting theList delete every element
-    delete [] theList;
+
+PersonList::~PersonList(){
+    delete [] theList;//unsure if this deletes the list properly 
 }
 
 void PersonList::addPerson(const char* child_name, const char* father_name, const char* mother_name){
@@ -45,7 +45,7 @@ void PersonList::addPerson(const char* child_name, const char* father_name, cons
     insertIntoList(newChild);
     father->addChild(newChild);
     mother->addChild(newChild);
-}
+   }
 
 void PersonList::insertIntoList(Person *newPerson){
     if(numPeople == capacity) expand(&theList, &capacity);
