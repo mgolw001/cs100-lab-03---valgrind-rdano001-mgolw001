@@ -17,9 +17,6 @@ Person::Person(const char *name_, Person* father_, Person* mother_){
 //doesnt delete the parents
 //doesnt delete the name either
 Person::~Person(){
-    for(int i=0;i<capacity;i++){
-	delete children[i];
-    }
     delete [] children;
     delete  name;
 }
@@ -86,4 +83,5 @@ void expand(Person ***t, int *MAX){
   memcpy(temp, *t, *MAX * sizeof(**t));
   *MAX *= 2;
   *t = temp;
+  delete temp;
 }
