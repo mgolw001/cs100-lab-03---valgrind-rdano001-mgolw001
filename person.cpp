@@ -6,7 +6,11 @@ using std::cout;
 using std::endl;
 
 Person::Person(const char *name_, Person* father_, Person* mother_){
+<<<<<<< HEAD
     name = new char[strlen(name_)+1];
+=======
+    name = new char[strlen(name_)+1]; // have to add +1 because strcpy takes in the null space after as well, so needs more length
+>>>>>>> f2ec427e26ec82bac6bcad84c13dfd1c551022f0
     strcpy(name, name_);
     father =  father_;
     mother =  mother_;
@@ -18,8 +22,13 @@ Person::Person(const char *name_, Person* father_, Person* mother_){
 Person::~Person(){
     delete [] children;
     delete [] name;
+<<<<<<< HEAD
    // delete father;//unsure if this needs to be deleted
    // delete mother;//unsure if this needs to be deleted
+=======
+    //delete father;//unsure if this needs to be deleted
+    //delete mother;//unsure if this needs to be deleted
+>>>>>>> f2ec427e26ec82bac6bcad84c13dfd1c551022f0
 }
 
 void Person::addChild(Person *newChild){
@@ -55,7 +64,11 @@ void Person::printLineage(char dir, int level){
             father->printLineage(dir, level + 1);
         }
     }
+<<<<<<< HEAD
    delete[] temp;
+=======
+  delete[] temp; // delete temp for compute_relation
+>>>>>>> f2ec427e26ec82bac6bcad84c13dfd1c551022f0
 }
 
 /* helper function to compute the lineage
@@ -72,7 +85,11 @@ char* Person::compute_relation(int level){
     for(int i = 2; i <= level; i++){
         char *temp2 = new char[strlen("great ") + strlen(temp) + 1];
         strcat(strcpy(temp2, "great "), temp);
+<<<<<<< HEAD
         delete[] temp;
+=======
+        delete[] temp; //delete old memory so can hold new memory
+>>>>>>> f2ec427e26ec82bac6bcad84c13dfd1c551022f0
         temp = temp2;
     }
     return temp;
@@ -85,6 +102,12 @@ void expand(Person ***t, int *MAX){
   Person **temp = new Person*[2 * *MAX];
   memcpy(temp, *t, *MAX * sizeof(**t));
   *MAX *= 2;
+<<<<<<< HEAD
   delete[] *t; 
   *t = temp;
+=======
+  delete[] *t; // have to delete the memory address of the old array to hold to new array's address
+  *t = temp;
+  //delete temp;//unsure if this is the correct delete 
+>>>>>>> f2ec427e26ec82bac6bcad84c13dfd1c551022f0
   }
