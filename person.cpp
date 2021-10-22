@@ -6,7 +6,7 @@ using std::cout;
 using std::endl;
 
 Person::Person(const char *name_, Person* father_, Person* mother_){
-    name = new char[strlen(name_)+1];
+    name = new char[strlen(name_)+1]; // have to add +1 because strcpy takes in the null space after as well, so needs more length
     strcpy(name, name_);
     father =  father_;
     mother =  mother_;
@@ -55,7 +55,7 @@ void Person::printLineage(char dir, int level){
             father->printLineage(dir, level + 1);
         }
     }
-  delete[] temp;
+  delete[] temp; // delete temp for compute_relation
 }
 
 /* helper function to compute the lineage
@@ -72,7 +72,7 @@ char* Person::compute_relation(int level){
     for(int i = 2; i <= level; i++){
         char *temp2 = new char[strlen("great ") + strlen(temp) + 1];
         strcat(strcpy(temp2, "great "), temp);
-        delete[] temp;
+        delete[] temp; //delete old memory so can hold new memory
         temp = temp2;
     }
     return temp;
@@ -85,7 +85,7 @@ void expand(Person ***t, int *MAX){
   Person **temp = new Person*[2 * *MAX];
   memcpy(temp, *t, *MAX * sizeof(**t));
   *MAX *= 2;
-  delete[] *t;
+  delete[] *t; // have to delete the memory address of the old array to hold to new array's address
   *t = temp;
   //delete temp;//unsure if this is the correct delete 
   }
